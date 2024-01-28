@@ -34,7 +34,7 @@ class _SplashPageState extends State<SplashPage> with SplashMixin {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ImagePath.splash.toImage(),
+                        ImagePath.splash.toImage(200),
                 const Text(
                   AppStrings.weather,
                   style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),

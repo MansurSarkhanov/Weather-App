@@ -67,7 +67,7 @@ class LocationModel {
 class CurrentModel {
   int? lastUpdatedEpoch;
   String? lastUpdated;
-  int? tempC;
+  double? tempC;
   double? tempF;
   int? isDay;
   Condition? condition;
@@ -149,7 +149,7 @@ class ForecastModel {
 class Forecastday {
   String? date;
   int? dateEpoch;
-  Day? day;
+  DayModel? day;
 
   Forecastday({
     this.date,
@@ -160,7 +160,7 @@ class Forecastday {
   Forecastday.fromJson(Map<String, dynamic> json) {
     date = json['date'];
     dateEpoch = json['date_epoch'];
-    day = json['day'] != null ? Day.fromJson(json['day']) : null;
+    day = json['day'] != null ? DayModel.fromJson(json['day']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -175,8 +175,8 @@ class Forecastday {
   }
 }
 
-class Day {
-  int? maxtempC;
+class DayModel {
+  double? maxtempC;
   double? maxtempF;
   double? mintempC;
   double? mintempF;
@@ -184,14 +184,14 @@ class Day {
   double? avgtempF;
   double? maxwindMph;
   double? maxwindKph;
-  int? totalprecipMm;
-  int? totalprecipIn;
-  int? avgvisKm;
-  int? avgvisMiles;
+  double? totalprecipMm;
+  double? totalprecipIn;
+  double? avgvisKm;
+  double? avgvisMiles;
   int? avghumidity;
   int? dailyWillItRain;
 
-  Day({
+  DayModel({
     this.maxtempC,
     this.maxtempF,
     this.mintempC,
@@ -208,7 +208,7 @@ class Day {
     this.dailyWillItRain,
   });
 
-  Day.fromJson(Map<String, dynamic> json) {
+  DayModel.fromJson(Map<String, dynamic> json) {
     maxtempC = json['maxtemp_c'];
     maxtempF = json['maxtemp_f'];
     mintempC = json['mintemp_c'];

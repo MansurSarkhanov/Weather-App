@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:weather_app/Core/Provider/home_provider.dart';
 import 'package:weather_app/Product/Constants/app_colors.dart';
+import 'package:weather_app/Product/Utility/Extension/image_path_extension.dart';
 
+import '../../../Product/Constants/app_strings.dart';
 import '../../Components/custom_text.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,9 +20,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     tabController = TabController(length: 4, vsync: this);
+    context.read<HomeProvider>().getWeather();
   }
+
   @override
   Widget build(BuildContext context) {
+    final homeProviderWatch = context.watch<HomeProvider>();
+
     return Scaffold(
         backgroundColor: AppColors.backColor,
         appBar: AppBar(
@@ -30,11 +38,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             tabAlignment: TabAlignment.center,
             controller: tabController,
             labelPadding: const EdgeInsets.all(16),
+            labelColor: Colors.white,
             tabs: const [
-              CustomText(text: "Today"),
-              CustomText(text: "Forecast"),
-              CustomText(text: "Precipitation"),
-              CustomText(text: "Radar")
+              CustomText(text: AppStrings.today),
+              CustomText(text: AppStrings.forecastHome),
+              CustomText(text: AppStrings.preciption),
+              CustomText(text: AppStrings.radar)
             ],
           ),
           actions: [
@@ -51,18 +60,55 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 Icons.menu,
                 color: Colors.white,
               )),
-          title: const CustomText(text: "Data"),
+          title: CustomText(
+              text:
+                  '${homeProviderWatch.currentModel?.location?.name}, ${homeProviderWatch.currentModel?.location?.country}'),
           backgroundColor: AppColors.backColor,
         ),
         body: TabBarView(
           controller: tabController,
           children: [
-            Container(),
+            Column(
+              children: [
+                Container(
+                  margin: const EdgeInsets.symmetric(vertical: 12),
+                  decoration: const BoxDecoration(
+                      color: Color(0xFF32333E), borderRadius: BorderRadius.all(Radius.circular(20))),
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 8, bottom: 8, right: 16, left: 16),
+                    child: CustomText(
+                      text: "${homeProviderWatch.date}",
+                      size: 12,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 24.0, right: 48),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        children: [
+                          ImagePath.homesun.toImage(150),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Text(
+                            "${homeProviderWatch.currentModel?.current?.tempC.toString()}°",
+                            style: TextStyle(fontSize: 64, color: Colors.grey.shade400),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
             Container(),
             Container(),
             Container(),
           ],
-        )
-    );
+        ));
   }
 }

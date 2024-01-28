@@ -6,6 +6,7 @@ enum ImagePath {
   suncloud,
   rain,
   splash,
+  homesun
 }
 
 extension ImagePathExtension on ImagePath {
@@ -13,7 +14,10 @@ extension ImagePathExtension on ImagePath {
     return 'assets/Images/im_$name.png';
   }
 
-  Widget toImage() {
-    return Image.asset(toPath());
+  Widget toImage(double? width) {
+    return Image.asset(
+      toPath(),
+      width: width,
+    );
   }
 }

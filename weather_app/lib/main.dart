@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/Core/DI/injection.dart';
+import 'package:weather_app/Core/Provider/home_provider.dart';
 import 'package:weather_app/Core/Provider/onboarding_provider.dart';
 import 'package:weather_app/Core/Provider/splash_provider.dart';
 import 'package:weather_app/Feature/Presentation/Screens/splash_page.dart';
@@ -15,6 +16,9 @@ void main() {
       providers: [
         ChangeNotifierProvider(
           create: (context) => OnboardingProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => HomeProvider(),
         ),
         ChangeNotifierProvider(
           create: (context) => SplashProvider(),

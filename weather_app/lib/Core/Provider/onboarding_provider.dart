@@ -32,7 +32,6 @@ class OnboardingProvider extends ChangeNotifier {
   void saveOnboarding() {
     isSave = true;
     if (isSave) {
-      print(isSave);
       _sharedPrefs.setBool('finish', isSave);
     }
   }

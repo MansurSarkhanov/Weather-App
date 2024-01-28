@@ -12,4 +12,12 @@ final class AppStrings {
 
   static const String onboardingTitle3 = "Weather Around the World";
   static const String onboardingSubTitle3 = "Add any location you want and swipe easily to chnage.";
+
+  //HomePage
+  static const String today = "Today";
+  static const String forecastHome = "Forecast";
+  static const String preciption = "Preciption";
+  static const String radar = "Radar";
+
+
 }

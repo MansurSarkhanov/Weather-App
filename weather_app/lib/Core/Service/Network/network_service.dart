@@ -8,19 +8,25 @@ final class NetworkService {
     contentType: 'application/json',
   ));
 
-  Future<WeatherModel?> fetchWeather() async {
+  Future<(WeatherModel?, String?)> fetchWeather(String query) async {
     final response = await _dio.get(
       AppKeys.forecastUrl,
-      queryParameters: {'q': 'London', 'days': "1"},
+      queryParameters: {'q': query, 'days': "1"},
     );
     if (response.statusCode == 200) {
       print(response.data);
+      String apiDate = response.headers["Date"]?.first ?? '';
+      String dateWithoutGMT = apiDate.replaceFirst(" GMT", "");
+
+      List<String> parts = dateWithoutGMT.split(" ");
+      String formattedDate = parts.take(4).join(" ");
+
       final weatherModel = WeatherModel.fromJson(response.data);
       print(weatherModel.location?.country);
       print(weatherModel.current?.condition?.code);
 
-      return weatherModel;
+      return (weatherModel, formattedDate);
     }
-    return null;
+    return (null, null);
   }
 }

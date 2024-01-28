@@ -7,7 +7,7 @@ mixin SplashMixin on State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    print('object');
     context.read<SplashProvider>().checkSplash();
+
   }
 }
