@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/Core/Service/Network/network_service.dart';
+import 'package:weather_app/Product/Utility/Extension/image_path_extension.dart';
+
+import '../../../Product/Constants/app_strings.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -9,13 +11,36 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  final NetworkService _service = NetworkService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        _service.fetchWeather();
-      }),
+      body: Stack(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.bottomLeft,
+                end: Alignment.topRight,
+                colors: [Color.fromARGB(255, 117, 133, 155), Colors.white],
+              ),
+            ),
+          ),
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ImagePath.splash.toImage(),
+                const Text(
+                  AppStrings.weather,
+                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                ),
+                const Text(AppStrings.forecast),
+              ],
+            ),
+          )
+        ],
+      ),
+    
     );
   }
 }
