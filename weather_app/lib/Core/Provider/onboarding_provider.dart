@@ -1,33 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
 import 'package:weather_app/Core/Models/onboarding_model.dart';
-import 'package:weather_app/Product/Constants/app_strings.dart';
-import 'package:weather_app/Product/Utility/Extension/image_path_extension.dart';
+import 'package:weather_app/Core/Service/Local/shared_service.dart';
+
+import '../../Feature/Presentation/Screens/home_page.dart';
+import '../DI/injection.dart';
 
 class OnboardingProvider extends ChangeNotifier {
-  List<OnboardingModel> onboardingModel = [
-    OnboardingModel(
-        image: ImagePath.cloud.toPath(), title: AppStrings.onboardingTitle1, subtitle: AppStrings.onboardingSubTitle1),
-    OnboardingModel(
-        image: ImagePath.sun.toPath(), title: AppStrings.onboardingTitle2, subtitle: AppStrings.onboardingSubTitle2),
-    OnboardingModel(
-        image: ImagePath.rain.toPath(), title: AppStrings.onboardingTitle3, subtitle: AppStrings.onboardingSubTitle3),
-    OnboardingModel(
-        image: ImagePath.suncloud.toPath(),
-        title: AppStrings.onboardingTitle3,
-        subtitle: AppStrings.onboardingSubTitle3)
-  ];
+  final _sharedPrefs = getIt.get<SharedPrefsService>();
+  final PageController pageController = PageController();
+
   int currentIndex = 0;
   double value = 0.25;
   bool isLast = false;
-  final PageController pageController = PageController();
-  void nextPage() {
+  bool isSave = false;
+
+  void nextPage(BuildContext context) {
     currentIndex++;
     value = value + 0.25;
-    print(currentIndex);
     pageController.animateToPage(currentIndex, duration: const Duration(seconds: 1), curve: Curves.decelerate);
     if (currentIndex == onboardingModel.length - 1) {
       isLast = true;
     }
+    if (currentIndex == onboardingModel.length) {
+      saveOnboarding();
+      context.route.navigateToPage(const HomePage());
+    }
     notifyListeners();
+  }
+
+  void saveOnboarding() {
+    isSave = true;
+    if (isSave) {
+      print(isSave);
+      _sharedPrefs.setBool('finish', isSave);
+    }
+  }
+
+  Future<bool> readCheckPage() async {
+    isSave = await _sharedPrefs.getBool('finish');
+    return isSave;
   }
 }

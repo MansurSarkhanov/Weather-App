@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:weather_app/Feature/Presentation/Screens/onboarding_page.dart';
 import 'package:weather_app/Product/Utility/Extension/image_path_extension.dart';
+import 'package:weather_app/Product/Utility/Mixin/splash_mixin.dart';
 
+import '../../../Core/Provider/splash_provider.dart';
 import '../../../Product/Constants/app_strings.dart';
 
 class SplashPage extends StatefulWidget {
@@ -10,11 +14,12 @@ class SplashPage extends StatefulWidget {
   State<SplashPage> createState() => _SplashPageState();
 }
 
-class _SplashPageState extends State<SplashPage> {
+class _SplashPageState extends State<SplashPage> with SplashMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+        body: context.watch<SplashProvider>().isSplash
+            ? Stack(
         children: [
           Container(
             decoration: const BoxDecoration(
@@ -39,7 +44,8 @@ class _SplashPageState extends State<SplashPage> {
             ),
           )
         ],
-      ),
+              )
+            : const OnboardingPage()
     
     );
   }

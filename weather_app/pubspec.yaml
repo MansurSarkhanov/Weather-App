@@ -21,6 +21,8 @@ dependencies:
   geolocator: ^10.1.0
   dio: ^5.4.0
   google_fonts: ^6.1.0
+  shared_preferences: ^2.2.2
+  kartal: ^3.5.0
 
 dev_dependencies:
   flutter_test:
