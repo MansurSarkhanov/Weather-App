@@ -89,15 +89,21 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     children: [
                       Column(
                         children: [
-                          ImagePath.homesun.toImage(150),
+                          ImagePath.homesun.toImage(160),
                         ],
                       ),
                       Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
                             "${homeProviderWatch.currentModel?.current?.tempC.toString()}°",
-                            style: TextStyle(fontSize: 64, color: Colors.grey.shade400),
-                          )
+                            style: TextStyle(fontSize: 58, color: Colors.grey.shade400),
+                          ),
+                          Text(
+                            "${homeProviderWatch.currentModel?.current?.condition?.text.toString()}",
+                            style: TextStyle(fontSize: 14, color: Colors.grey.shade400),
+                          ),
                         ],
                       )
                     ],
