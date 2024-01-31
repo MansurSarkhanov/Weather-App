@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(textTheme: GoogleFonts.aBeeZeeTextTheme()),
-      title: 'WeatherApp',
+      title: 'Weather App',
       home: const SplashPage(),
     );
   }
