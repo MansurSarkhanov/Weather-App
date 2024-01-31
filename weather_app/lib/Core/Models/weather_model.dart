@@ -72,9 +72,29 @@ class CurrentModel {
   int? isDay;
   Condition? condition;
   int? cloud;
+  double? windMph;
+  double? windKph;
+  int? windDegree;
+  String? windDir;
+  double? feelslikeC;
+  double? feelslikeF;
+  int? humidity;
 
   CurrentModel(
-      {this.lastUpdatedEpoch, this.lastUpdated, this.tempC, this.tempF, this.isDay, this.condition, this.cloud});
+      {this.lastUpdatedEpoch,
+      this.lastUpdated,
+      this.tempC,
+      this.tempF,
+      this.isDay,
+      this.condition,
+      this.cloud,
+      this.feelslikeC,
+      this.feelslikeF,
+      this.windDegree,
+      this.windDir,
+      this.windKph,
+      this.humidity,
+      this.windMph});
 
   CurrentModel.fromJson(Map<String, dynamic> json) {
     lastUpdatedEpoch = json['last_updated_epoch'];
@@ -84,6 +104,13 @@ class CurrentModel {
     isDay = json['is_day'];
     condition = json['condition'] != null ? Condition.fromJson(json['condition']) : null;
     cloud = json['cloud'];
+    windMph = json['wind_mph'];
+    windKph = json['wind_kph'];
+    windDegree = json['wind_degree'];
+    windDir = json['wind_dir'];
+    feelslikeC = json['feelslike_c'];
+    feelslikeF = json['feelslike_f'];
+    humidity = json['humidity'];
   }
 
   Map<String, dynamic> toJson() {
@@ -150,7 +177,7 @@ class Forecastday {
   String? date;
   int? dateEpoch;
   DayModel? day;
-
+  AstroModel? astro;
   Forecastday({
     this.date,
     this.dateEpoch,
@@ -160,6 +187,9 @@ class Forecastday {
   Forecastday.fromJson(Map<String, dynamic> json) {
     date = json['date'];
     dateEpoch = json['date_epoch'];
+
+    astro = json['astro'] != null ? AstroModel.fromJson(json['astro']) : null;
+
     day = json['day'] != null ? DayModel.fromJson(json['day']) : null;
   }
 
@@ -171,6 +201,25 @@ class Forecastday {
       data['day'] = day!.toJson();
     }
 
+    return data;
+  }
+}
+
+class AstroModel {
+  String? sunrise;
+  String? sunset;
+
+  AstroModel({this.sunrise, this.sunset});
+
+  AstroModel.fromJson(Map<String, dynamic> json) {
+    sunrise = json['sunrise'];
+    sunset = json['sunset'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['sunrise'] = sunrise;
+    data['sunset'] = sunset;
     return data;
   }
 }

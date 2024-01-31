@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/Core/Provider/home_provider.dart';
 import 'package:weather_app/Product/Constants/app_colors.dart';
+import 'package:weather_app/Product/Utility/Extension/icon_path_extension.dart';
 import 'package:weather_app/Product/Utility/Extension/image_path_extension.dart';
 
 import '../../../Product/Constants/app_strings.dart';
@@ -108,7 +109,113 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       )
                     ],
                   ),
-                )
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      "Feels like ${homeProviderWatch.currentModel?.current?.feelslikeC}°",
+                      style: TextStyle(fontSize: 14, color: Colors.grey.shade400),
+                    ),
+                    Text(
+                      '|',
+                      style: TextStyle(fontSize: 14, color: Colors.grey.shade400),
+                    ),
+                    Text(
+                      'Wind ${homeProviderWatch.currentModel?.current?.windKph} KM/H ',
+                      style: TextStyle(fontSize: 14, color: Colors.grey.shade400),
+                    )
+                  ],
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 20.0),
+                  child: Text(
+                    '------------------------------------',
+                    style: TextStyle(fontSize: 14, color: Color(0xFF979797)),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              IconPath.sun.toImage(),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                'Wind: ',
+                                style: TextStyle(fontSize: 12, color: Colors.grey.shade400),
+                              ),
+                              Text(
+                                '${homeProviderWatch.currentModel?.current?.windMph} mp/h',
+                                style: const TextStyle(fontSize: 12, color: Colors.white, fontWeight: FontWeight.bold),
+                              )
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              IconPath.hum.toImage(),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                'Humidity:',
+                                style: TextStyle(fontSize: 12, color: Colors.grey.shade400),
+                              ),
+                              Text(
+                                ' ${homeProviderWatch.currentModel?.current?.windMph}%   ',
+                                style: const TextStyle(fontSize: 12, color: Colors.white, fontWeight: FontWeight.bold),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              IconPath.sunrise.toImage(),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                'Sunrise: ',
+                                style: TextStyle(fontSize: 12, color: Colors.grey.shade400),
+                              ),
+                              Text(
+                                ' ${homeProviderWatch.currentModel?.forecast?.forecastday?.first.astro?.sunrise}',
+                                style: const TextStyle(fontSize: 12, color: Colors.white, fontWeight: FontWeight.bold),
+                              )
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              IconPath.sunrise.toImage(),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                'Sunset:',
+                                style: TextStyle(fontSize: 12, color: Colors.grey.shade400),
+                              ),
+                              Text(
+                                ' ${homeProviderWatch.currentModel?.forecast?.forecastday?.first.astro?.sunset}',
+                                style: const TextStyle(fontSize: 12, color: Colors.white, fontWeight: FontWeight.bold),
+                              )
+                            ],
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                
               ],
             ),
             Container(),
