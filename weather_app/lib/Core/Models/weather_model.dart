@@ -239,6 +239,7 @@ class DayModel {
   double? avgvisMiles;
   int? avghumidity;
   int? dailyWillItRain;
+  ConditionModel? conditionModel;
 
   DayModel({
     this.maxtempC,
@@ -255,6 +256,7 @@ class DayModel {
     this.avgvisMiles,
     this.avghumidity,
     this.dailyWillItRain,
+      this.conditionModel
   });
 
   DayModel.fromJson(Map<String, dynamic> json) {
@@ -272,6 +274,7 @@ class DayModel {
     avgvisMiles = json['avgvis_miles'];
     avghumidity = json['avghumidity'];
     dailyWillItRain = json['daily_will_it_rain'];
+    conditionModel = json['condition'] != null ? ConditionModel.fromJson(json['condition']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -291,6 +294,28 @@ class DayModel {
     data['avghumidity'] = avghumidity;
     data['daily_will_it_rain'] = dailyWillItRain;
 
+    return data;
+  }
+}
+
+class ConditionModel {
+  String? text;
+  String? icon;
+  int? code;
+
+  ConditionModel({this.text, this.icon, this.code});
+
+  ConditionModel.fromJson(Map<String, dynamic> json) {
+    text = json['text'];
+    icon = json['icon'];
+    code = json['code'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['text'] = text;
+    data['icon'] = icon;
+    data['code'] = code;
     return data;
   }
 }
