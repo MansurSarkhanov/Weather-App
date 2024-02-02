@@ -18,6 +18,11 @@ final class AppStrings {
   static const String forecastHome = "Forecast";
   static const String preciption = "Preciption";
   static const String radar = "Radar";
+  static const String details = "Details";
+  static const String high = "High";
+  static const String low = "Low";
+
+
 
 
 }

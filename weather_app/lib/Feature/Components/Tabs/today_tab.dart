@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:lottie/lottie.dart';
-import 'package:weather_app/Product/Utility/Extension/lottie_path_extension.dart';
+import 'package:weather_app/Product/Constants/app_strings.dart';
 
 import '../../../Core/Provider/home_provider.dart';
 import '../../../Product/Utility/Extension/icon_path_extension.dart';
@@ -15,10 +14,10 @@ class TodayTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return homeProviderWatch.isLoading
-        ? Lottie.asset(
-            LottiePath.loading.toPath(),
-            repeat: true,
-          )
+        ? const Center(
+            child: CircularProgressIndicator(
+            color: Colors.blue,
+          ))
         : SingleChildScrollView(
             child: Column(
               children: [
@@ -169,16 +168,49 @@ class TodayTab extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 28,
+                  height: 24,
                 ),
                 _hourWeather(context),
                 const SizedBox(
-                  height: 28,
+                  height: 24,
                 ),
                 _weatherCard(),
                 const SizedBox(
-                  height: 28,
+                  height: 24,
                 ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Container(
+                    decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter,
+                          colors: [Color(0xFF2F313A), Color(0xFF232329)],
+                        ),
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    child: Padding(
+                      padding: const EdgeInsets.all(24.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Row(
+                            children: [
+                              Text(
+                                AppStrings.details,
+                                style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Image.network('http:${homeProviderWatch.currentModel?.current?.condition?.icon}')
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                )
               ],
             ),
           );
@@ -188,13 +220,12 @@ class TodayTab extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 10.0, right: 10),
       child: Container(
-        height: 300,
         decoration: const BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.bottomCenter,
                 end: Alignment.topCenter,
                 colors: [Color(0xFF373944), Color(0xFF232329)]),
-            boxShadow: [BoxShadow(blurRadius: 1)],
+           
             borderRadius: BorderRadius.all(Radius.circular(10))),
         child: Padding(
           padding: const EdgeInsets.all(24.0),
