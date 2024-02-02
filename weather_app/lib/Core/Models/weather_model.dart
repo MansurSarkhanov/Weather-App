@@ -178,6 +178,7 @@ class Forecastday {
   int? dateEpoch;
   DayModel? day;
   AstroModel? astro;
+  List<HourModel>? hour;
   Forecastday({
     this.date,
     this.dateEpoch,
@@ -191,6 +192,12 @@ class Forecastday {
     astro = json['astro'] != null ? AstroModel.fromJson(json['astro']) : null;
 
     day = json['day'] != null ? DayModel.fromJson(json['day']) : null;
+    if (json['hour'] != null) {
+      hour = <HourModel>[];
+      json['hour'].forEach((v) {
+        hour!.add(HourModel.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -201,25 +208,6 @@ class Forecastday {
       data['day'] = day!.toJson();
     }
 
-    return data;
-  }
-}
-
-class AstroModel {
-  String? sunrise;
-  String? sunset;
-
-  AstroModel({this.sunrise, this.sunset});
-
-  AstroModel.fromJson(Map<String, dynamic> json) {
-    sunrise = json['sunrise'];
-    sunset = json['sunset'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['sunrise'] = sunrise;
-    data['sunset'] = sunset;
     return data;
   }
 }
@@ -241,23 +229,22 @@ class DayModel {
   int? dailyWillItRain;
   ConditionModel? conditionModel;
 
-  DayModel({
-    this.maxtempC,
-    this.maxtempF,
-    this.mintempC,
-    this.mintempF,
-    this.avgtempC,
-    this.avgtempF,
-    this.maxwindMph,
-    this.maxwindKph,
-    this.totalprecipMm,
-    this.totalprecipIn,
-    this.avgvisKm,
-    this.avgvisMiles,
-    this.avghumidity,
-    this.dailyWillItRain,
-      this.conditionModel
-  });
+  DayModel(
+      {this.maxtempC,
+      this.maxtempF,
+      this.mintempC,
+      this.mintempF,
+      this.avgtempC,
+      this.avgtempF,
+      this.maxwindMph,
+      this.maxwindKph,
+      this.totalprecipMm,
+      this.totalprecipIn,
+      this.avgvisKm,
+      this.avgvisMiles,
+      this.avghumidity,
+      this.dailyWillItRain,
+      this.conditionModel});
 
   DayModel.fromJson(Map<String, dynamic> json) {
     maxtempC = json['maxtemp_c'];
@@ -297,6 +284,53 @@ class DayModel {
     return data;
   }
 }
+
+class AstroModel {
+  String? sunrise;
+  String? sunset;
+
+  AstroModel({this.sunrise, this.sunset});
+
+  AstroModel.fromJson(Map<String, dynamic> json) {
+    sunrise = json['sunrise'];
+    sunset = json['sunset'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['sunrise'] = sunrise;
+    data['sunset'] = sunset;
+    return data;
+  }
+}
+
+class HourModel {
+  String? time;
+  double? tempC;
+  double? tempF;
+  ConditionModel? condition;
+
+  HourModel({this.time, this.tempC, this.tempF, this.condition});
+
+  HourModel.fromJson(Map<String, dynamic> json) {
+    time = json['time'];
+    tempC = json['temp_c'];
+    tempF = json['temp_f'];
+    condition = json['condition'] != null ? ConditionModel.fromJson(json['condition']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['time'] = time;
+    data['temp_c'] = tempC;
+    data['temp_f'] = tempF;
+    if (condition != null) {
+      data['condition'] = condition!.toJson();
+    }
+    return data;
+  }
+}
+
 
 class ConditionModel {
   String? text;

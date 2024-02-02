@@ -9,6 +9,7 @@ class HomeProvider extends ChangeNotifier {
   final _networkService = getIt.get<NetworkService>();
   WeatherModel? currentModel;
   String? date;
+  bool isLoading = true;
 
   Future<String> getLocation() async {
     bool serviceEnabled;
@@ -35,9 +36,16 @@ class HomeProvider extends ChangeNotifier {
   Future<void> getWeather() async {
     final location = await getLocation();
     final result = await _networkService.fetchWeather(location);
+
     currentModel = result.$1;
     date = result.$2;
+    if (currentModel != null && date != null) {
+      isLoading = false;
+      print(isLoading);
+
     print(currentModel?.location?.country);
     notifyListeners();
+    }
+  
   }
 }

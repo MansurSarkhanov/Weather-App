@@ -36,8 +36,9 @@ class OnboardingProvider extends ChangeNotifier {
     }
   }
 
-  Future<bool> readCheckPage() async {
+  Future<void> readCheckPage() async {
     isSave = await _sharedPrefs.getBool('finish');
-    return isSave;
+    notifyListeners();
+    print(isSave);
   }
 }

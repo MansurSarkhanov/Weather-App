@@ -11,7 +11,7 @@ final class NetworkService {
   Future<(WeatherModel?, String?)> fetchWeather(String query) async {
     final response = await _dio.get(
       AppKeys.forecastUrl,
-      queryParameters: {'q': query, 'days': "3"},
+      queryParameters: {'q': query, 'days': "1"},
     );
     if (response.statusCode == 200) {
       print(response.data);

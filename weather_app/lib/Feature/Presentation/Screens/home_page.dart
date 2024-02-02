@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/Core/Provider/home_provider.dart';
@@ -60,9 +61,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 Icons.menu,
                 color: Colors.white,
               )),
-          title: CustomText(
+          title: homeProviderWatch.isLoading
+              ? const CupertinoActivityIndicator(
+                  color: Colors.white,
+                )
+              : CustomText(
               text:
-                  '${homeProviderWatch.currentModel?.location?.name}, ${homeProviderWatch.currentModel?.location?.country}'),
+                      '${homeProviderWatch.currentModel?.location?.name}, ${homeProviderWatch.currentModel?.location?.country}'),
           backgroundColor: AppColors.backColor,
         ),
         body: TabBarView(

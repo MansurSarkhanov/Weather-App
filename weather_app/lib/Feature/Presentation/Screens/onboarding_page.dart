@@ -19,13 +19,9 @@ class _OnboardingPageState extends State<OnboardingPage> with TickerProviderStat
     final onboardingProviderWatch = context.watch<OnboardingProvider>();
     final onboardingProviderRead = context.read<OnboardingProvider>();
 
-    return FutureBuilder(
-        future: context.read<OnboardingProvider>().readCheckPage(),
-        builder: (context, snapshat) {
-          if (snapshat.data ?? false) {
-            return const HomePage();
-          }
-          return Scaffold(
+    return onboardingProviderWatch.isSave
+        ? const HomePage()
+        : Scaffold(
               floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
               floatingActionButton: Padding(
                 padding: const EdgeInsets.only(bottom: 20.0),
@@ -116,7 +112,6 @@ class _OnboardingPageState extends State<OnboardingPage> with TickerProviderStat
                     ],
                   );
                 },
-              ));
-        });
+            ));
   }
 }

@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
 
 import '../../../Core/Provider/home_provider.dart';
 import '../../../Product/Utility/Extension/icon_path_extension.dart';
@@ -18,12 +20,15 @@ class TodayTab extends StatelessWidget {
           decoration:
               const BoxDecoration(color: Color(0xFF32333E), borderRadius: BorderRadius.all(Radius.circular(20))),
           child: Padding(
-            padding: const EdgeInsets.only(top: 8, bottom: 8, right: 16, left: 16),
-            child: CustomText(
-              text: "${homeProviderWatch.date}",
-              size: 12,
-            ),
-          ),
+              padding: const EdgeInsets.only(top: 8, bottom: 8, right: 16, left: 16),
+              child: homeProviderWatch.isLoading
+                  ? const CupertinoActivityIndicator(
+                      color: Colors.white,
+                    )
+                  : CustomText(
+                      text: "${homeProviderWatch.date}",
+                      size: 12,
+                    )),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 24.0, right: 48),
@@ -39,14 +44,28 @@ class TodayTab extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
-                    "${homeProviderWatch.currentModel?.current?.tempC.toString()}°",
-                    style: TextStyle(fontSize: 58, color: Colors.grey.shade400),
-                  ),
-                  Text(
-                    "${homeProviderWatch.currentModel?.current?.condition?.text.toString()}",
-                    style: TextStyle(fontSize: 14, color: Colors.grey.shade400),
-                  ),
+                  homeProviderWatch.isLoading
+                      ? const CupertinoActivityIndicator(
+                          radius: 50,
+                          color: Colors.white,
+                        )
+                      : Text(
+                          "${homeProviderWatch.currentModel?.current?.tempC.toString()}°",
+                          style: TextStyle(fontSize: 58, color: Colors.grey.shade400),
+                        ),
+                  if (homeProviderWatch.isLoading) ...[
+                    const SizedBox(
+                      height: 16,
+                    )
+                  ],
+                  homeProviderWatch.isLoading
+                      ? const CupertinoActivityIndicator(
+                          color: Colors.white,
+                        )
+                      : Text(
+                          "${homeProviderWatch.currentModel?.current?.condition?.text.toString()}",
+                          style: TextStyle(fontSize: 14, color: Colors.grey.shade400),
+                        ),
                 ],
               )
             ],
@@ -55,18 +74,24 @@ class TodayTab extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text(
-              "Feels like ${homeProviderWatch.currentModel?.current?.feelslikeC}°",
-              style: TextStyle(fontSize: 14, color: Colors.grey.shade400),
-            ),
+            homeProviderWatch.isLoading
+                ? const CupertinoActivityIndicator(color: Colors.white)
+                : Text(
+                    "Feels like ${homeProviderWatch.currentModel?.current?.feelslikeC}°",
+                    style: TextStyle(fontSize: 14, color: Colors.grey.shade400),
+                  ),
             Text(
               '|',
               style: TextStyle(fontSize: 14, color: Colors.grey.shade400),
             ),
-            Text(
-              'Wind ${homeProviderWatch.currentModel?.current?.windKph} KM/H ',
-              style: TextStyle(fontSize: 14, color: Colors.grey.shade400),
-            )
+            homeProviderWatch.isLoading
+                ? const CupertinoActivityIndicator(
+                    color: Colors.white,
+                  )
+                : Text(
+                    'Wind ${homeProviderWatch.currentModel?.current?.windKph} KM/H ',
+                    style: TextStyle(fontSize: 14, color: Colors.grey.shade400),
+                  )
           ],
         ),
         const Padding(
@@ -93,10 +118,14 @@ class TodayTab extends StatelessWidget {
                         'Wind: ',
                         style: TextStyle(fontSize: 12, color: Colors.grey.shade400),
                       ),
-                      Text(
-                        '${homeProviderWatch.currentModel?.current?.windMph} mp/h',
-                        style: const TextStyle(fontSize: 12, color: Colors.white, fontWeight: FontWeight.bold),
-                      )
+                      homeProviderWatch.isLoading
+                          ? const CupertinoActivityIndicator(
+                              color: Colors.white,
+                            )
+                          : Text(
+                              '${homeProviderWatch.currentModel?.current?.windMph} mp/h',
+                              style: const TextStyle(fontSize: 12, color: Colors.white, fontWeight: FontWeight.bold),
+                            )
                     ],
                   ),
                   Row(
@@ -109,10 +138,14 @@ class TodayTab extends StatelessWidget {
                         'Humidity:',
                         style: TextStyle(fontSize: 12, color: Colors.grey.shade400),
                       ),
-                      Text(
-                        ' ${homeProviderWatch.currentModel?.current?.windMph}%   ',
-                        style: const TextStyle(fontSize: 12, color: Colors.white, fontWeight: FontWeight.bold),
-                      )
+                      homeProviderWatch.isLoading
+                          ? const CupertinoActivityIndicator(
+                              color: Colors.white,
+                            )
+                          : Text(
+                              ' ${homeProviderWatch.currentModel?.current?.windMph}%   ',
+                              style: const TextStyle(fontSize: 12, color: Colors.white, fontWeight: FontWeight.bold),
+                            )
                     ],
                   ),
                 ],
@@ -133,10 +166,14 @@ class TodayTab extends StatelessWidget {
                         'Sunrise: ',
                         style: TextStyle(fontSize: 12, color: Colors.grey.shade400),
                       ),
-                      Text(
-                        ' ${homeProviderWatch.currentModel?.forecast?.forecastday?.first.astro?.sunrise}',
-                        style: const TextStyle(fontSize: 12, color: Colors.white, fontWeight: FontWeight.bold),
-                      )
+                      homeProviderWatch.isLoading
+                          ? const CupertinoActivityIndicator(
+                              color: Colors.white,
+                            )
+                          : Text(
+                              ' ${homeProviderWatch.currentModel?.forecast?.forecastday?.first.astro?.sunrise}',
+                              style: const TextStyle(fontSize: 12, color: Colors.white, fontWeight: FontWeight.bold),
+                            )
                     ],
                   ),
                   Row(
@@ -149,10 +186,12 @@ class TodayTab extends StatelessWidget {
                         'Sunset:',
                         style: TextStyle(fontSize: 12, color: Colors.grey.shade400),
                       ),
-                      Text(
-                        ' ${homeProviderWatch.currentModel?.forecast?.forecastday?.first.astro?.sunset}',
-                        style: const TextStyle(fontSize: 12, color: Colors.white, fontWeight: FontWeight.bold),
-                      )
+                      homeProviderWatch.isLoading
+                          ? const CupertinoActivityIndicator()
+                          : Text(
+                              ' ${homeProviderWatch.currentModel?.forecast?.forecastday?.first.astro?.sunset}',
+                              style: const TextStyle(fontSize: 12, color: Colors.white, fontWeight: FontWeight.bold),
+                            )
                     ],
                   ),
                 ],
@@ -163,25 +202,67 @@ class TodayTab extends StatelessWidget {
         const SizedBox(
           height: 20,
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: homeProviderWatch.currentModel?.forecast?.forecastday
-                  ?.map(
-                    (e) => Container(
-                      height: 144,
-                      width: 64,
-                      decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 56, 60, 75), borderRadius: BorderRadius.all(Radius.circular(30))),
-                      child: Column(
-                        children: [
-                          Image.network("https:${e.day?.conditionModel?.icon}"),
-                          Text(e.day?.avgtempC.toString() ?? ''),
-                        ],
+        Container(
+            color: Colors.red,
+            height: 150,
+            width: context.general.mediaQuery.size.width,
+            child: ListView.builder(
+              itemCount: homeProviderWatch.currentModel?.forecast?.forecastday?.first.hour?.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return Container(
+                  height: 144,
+                  width: 64,
+                  decoration: const BoxDecoration(
+                      color: Color.fromARGB(255, 56, 60, 75), borderRadius: BorderRadius.all(Radius.circular(30))),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      // Image.network(
+                      //   "https:${e.condition?.icon}",
+                      //   width: 40,
+                      //   height: 40,
+                      // ),
+                      Text(
+                        '${homeProviderWatch.currentModel?.forecast?.forecastday?.first.hour?[index].tempC}°',
+                        style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                       ),
-                    ),
-                  )
-                  .toList() ??
-              [],
+                    ],
+                  ),
+                );
+              },
+            )
+            //  Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //   children: homeProviderWatch.currentModel?.forecast?.forecastday?.first.hour
+            //           ?.map(
+            //             (e) => Container(
+            //               height: 144,
+            //               width: 64,
+            //               decoration: const BoxDecoration(
+            //                   color: Color.fromARGB(255, 56, 60, 75),
+            //                   borderRadius: BorderRadius.all(Radius.circular(30))),
+            //               child: Column(
+            //                 crossAxisAlignment: CrossAxisAlignment.center,
+            //                 mainAxisAlignment: MainAxisAlignment.center,
+            //                 children: [
+            //                   Image.network(
+            //                     "https:${e.condition?.icon}",
+            //                     width: 40,
+            //                     height: 40,
+            //                   ),
+            //                   Text(
+            //                     '${e.tempC}°',
+            //                     style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            //                   ),
+            //                 ],
+            //               ),
+            //             ),
+            //           )
+            //           .toList() ??
+            //       [],
+            // ),
         )
       ],
     );
