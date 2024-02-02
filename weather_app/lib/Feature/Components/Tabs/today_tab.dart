@@ -202,15 +202,23 @@ class TodayTab extends StatelessWidget {
         const SizedBox(
           height: 20,
         ),
-        Container(
-            color: Colors.red,
+        SizedBox(
             height: 150,
             width: context.general.mediaQuery.size.width,
             child: ListView.builder(
               itemCount: homeProviderWatch.currentModel?.forecast?.forecastday?.first.hour?.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
+               
+                DateTime? parsedDate = DateTime.parse(
+                    homeProviderWatch.currentModel?.forecast?.forecastday?.first.hour?[index].time ??
+                        '2024-02-02 00:00');
+                String? hourMinute = '${parsedDate.hour}:${parsedDate.minute}0';
+
+                
+             
                 return Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 7),
                   height: 144,
                   width: 64,
                   decoration: const BoxDecoration(
@@ -219,11 +227,17 @@ class TodayTab extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      // Image.network(
-                      //   "https:${e.condition?.icon}",
-                      //   width: 40,
-                      //   height: 40,
-                      // ),
+                      Text(
+                        hourMinute,
+                        style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
+                      homeProviderWatch.isLoading
+                          ? const CupertinoActivityIndicator()
+                          : Image.network(
+                              "https:${homeProviderWatch.currentModel?.forecast?.forecastday?.first.hour?[index].condition?.icon}",
+                              width: 40,
+                              height: 40,
+                            ),
                       Text(
                         '${homeProviderWatch.currentModel?.forecast?.forecastday?.first.hour?[index].tempC}°',
                         style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
@@ -263,7 +277,7 @@ class TodayTab extends StatelessWidget {
             //           .toList() ??
             //       [],
             // ),
-        )
+            )
       ],
     );
   }
