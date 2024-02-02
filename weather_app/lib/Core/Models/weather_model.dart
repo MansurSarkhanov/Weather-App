@@ -70,7 +70,7 @@ class CurrentModel {
   double? tempC;
   double? tempF;
   int? isDay;
-  Condition? condition;
+  ConditionModel? condition;
   int? cloud;
   double? windMph;
   double? windKph;
@@ -79,6 +79,9 @@ class CurrentModel {
   double? feelslikeC;
   double? feelslikeF;
   int? humidity;
+  double? visKm;
+  double? visMi;
+  double? uv;
 
   CurrentModel(
       {this.lastUpdatedEpoch,
@@ -94,7 +97,10 @@ class CurrentModel {
       this.windDir,
       this.windKph,
       this.humidity,
-      this.windMph});
+      this.windMph,
+      this.visKm,
+      this.visMi,
+      this.uv});
 
   CurrentModel.fromJson(Map<String, dynamic> json) {
     lastUpdatedEpoch = json['last_updated_epoch'];
@@ -102,7 +108,7 @@ class CurrentModel {
     tempC = json['temp_c'];
     tempF = json['temp_f'];
     isDay = json['is_day'];
-    condition = json['condition'] != null ? Condition.fromJson(json['condition']) : null;
+    condition = json['condition'] != null ? ConditionModel.fromJson(json['condition']) : null;
     cloud = json['cloud'];
     windMph = json['wind_mph'];
     windKph = json['wind_kph'];
@@ -111,6 +117,10 @@ class CurrentModel {
     feelslikeC = json['feelslike_c'];
     feelslikeF = json['feelslike_f'];
     humidity = json['humidity'];
+    uv = json['uv'];
+    visKm = json['vis_km'];
+    visMi = json['vis_miles'];
+
   }
 
   Map<String, dynamic> toJson() {
@@ -124,28 +134,6 @@ class CurrentModel {
       data['condition'] = condition!.toJson();
     }
     data['cloud'] = cloud;
-    return data;
-  }
-}
-
-class Condition {
-  String? text;
-  String? icon;
-  int? code;
-
-  Condition({this.text, this.icon, this.code});
-
-  Condition.fromJson(Map<String, dynamic> json) {
-    text = json['text'];
-    icon = json['icon'];
-    code = json['code'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['text'] = text;
-    data['icon'] = icon;
-    data['code'] = code;
     return data;
   }
 }
@@ -330,7 +318,6 @@ class HourModel {
     return data;
   }
 }
-
 
 class ConditionModel {
   String? text;
