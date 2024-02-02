@@ -77,6 +77,10 @@ class AirQualityCard extends StatelessWidget {
                       ))
                 ],
               ),
+              const Text(
+                '------------------------------------',
+                style: TextStyle(fontSize: 14, color: Color(0xFF979797)),
+              ),
               const SizedBox(
                 height: 10,
               ),

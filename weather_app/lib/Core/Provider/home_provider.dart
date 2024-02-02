@@ -39,15 +39,13 @@ class HomeProvider extends ChangeNotifier {
 
     currentModel = result.$1;
     date = result.$2;
-               
 
     if (currentModel != null && date != null) {
       isLoading = false;
       print(isLoading);
 
-    print(currentModel?.location?.country);
-    notifyListeners();
+      print(currentModel?.location?.country);
+      notifyListeners();
     }
-  
   }
 }

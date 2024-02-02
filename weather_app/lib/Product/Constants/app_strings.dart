@@ -20,6 +20,8 @@ final class AppStrings {
   static const String radar = "Radar";
   static const String details = "Details";
   static const String airQuality = "Air Quality";
+  static const String sunMoon = "Sun & Moon";
+
 
   static const String high = "High";
   static const String low = "Low";

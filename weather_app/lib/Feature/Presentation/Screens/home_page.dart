@@ -24,6 +24,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     context.read<HomeProvider>().getWeather();
   }
 
+  void changeName() {}
+
   @override
   Widget build(BuildContext context) {
     final homeProviderWatch = context.watch<HomeProvider>();
@@ -66,7 +68,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   color: Colors.white,
                 )
               : CustomText(
-              text:
+                  text:
                       '${homeProviderWatch.currentModel?.location?.name}, ${homeProviderWatch.currentModel?.location?.country}'),
           backgroundColor: AppColors.backColor,
         ),
