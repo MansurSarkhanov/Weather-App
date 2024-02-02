@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kartal/kartal.dart';
+import 'package:weather_app/Feature/Components/Card/air_quality_card.dart';
 import 'package:weather_app/Feature/Components/Card/weather_card.dart';
 
 import '../../../Core/Provider/home_provider.dart';
@@ -7,6 +7,7 @@ import '../../../Product/Utility/Extension/icon_path_extension.dart';
 import '../../../Product/Utility/Extension/image_path_extension.dart';
 import '../Card/detail_card.dart';
 import '../custom_text.dart';
+import '../hourly_weather.dart';
 
 class TodayTab extends StatelessWidget {
   const TodayTab({super.key, required this.homeProviderWatch});
@@ -171,7 +172,7 @@ class TodayTab extends StatelessWidget {
                 const SizedBox(
                   height: 24,
                 ),
-                _hourWeather(context),
+                HourlyWeather(homeProviderWatch: homeProviderWatch),
                 const SizedBox(
                   height: 24,
                 ),
@@ -179,7 +180,11 @@ class TodayTab extends StatelessWidget {
                 const SizedBox(
                   height: 24,
                 ),
-                DetailCard(homeProviderWatch: homeProviderWatch)
+                DetailCard(homeProviderWatch: homeProviderWatch),
+                const SizedBox(
+                  height: 24,
+                ),
+                AirQualityCard(homeProviderWatch: homeProviderWatch)
               ],
             ),
           );
@@ -188,80 +193,4 @@ class TodayTab extends StatelessWidget {
 
 
 
-  SizedBox _hourWeather(BuildContext context) {
-    return SizedBox(
-        height: 150,
-        width: context.general.mediaQuery.size.width,
-        child: ListView.builder(
-          itemCount: homeProviderWatch.currentModel?.forecast?.forecastday?.first.hour?.length,
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (context, index) {
-            DateTime? parsedDate = DateTime.parse(
-                homeProviderWatch.currentModel?.forecast?.forecastday?.first.hour?[index].time ?? '2024-02-02 00:00');
-            String? hourMinute = '${parsedDate.hour}:${parsedDate.minute}0';
-
-            return Padding(
-              padding: const EdgeInsets.only(top: 10.0, bottom: 10),
-              child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 7),
-                width: 64,
-                decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 56, 60, 75),
-                    boxShadow: [BoxShadow(blurRadius: 8)],
-                    borderRadius: BorderRadius.all(Radius.circular(30))),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      hourMinute,
-                      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                    ),
-                    Image.network(
-                      "https:${homeProviderWatch.currentModel?.forecast?.forecastday?.first.hour?[index].condition?.icon}",
-                      width: 40,
-                      height: 40,
-                    ),
-                    Text(
-                      '${homeProviderWatch.currentModel?.forecast?.forecastday?.first.hour?[index].tempC}°',
-                      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-              ),
-            );
-          },
-        )
-        //  Row(
-        //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        //   children: homeProviderWatch.currentModel?.forecast?.forecastday?.first.hour
-        //           ?.map(
-        //             (e) => Container(
-        //               height: 144,
-        //               width: 64,
-        //               decoration: const BoxDecoration(
-        //                   color: Color.fromARGB(255, 56, 60, 75),
-        //                   borderRadius: BorderRadius.all(Radius.circular(30))),
-        //               child: Column(
-        //                 crossAxisAlignment: CrossAxisAlignment.center,
-        //                 mainAxisAlignment: MainAxisAlignment.center,
-        //                 children: [
-        //                   Image.network(
-        //                     "https:${e.condition?.icon}",
-        //                     width: 40,
-        //                     height: 40,
-        //                   ),
-        //                   Text(
-        //                     '${e.tempC}°',
-        //                     style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        //                   ),
-        //                 ],
-        //               ),
-        //             ),
-        //           )
-        //           .toList() ??
-        //       [],
-        // ),
-        );
-  }
 }

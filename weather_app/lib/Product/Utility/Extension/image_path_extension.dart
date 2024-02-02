@@ -6,7 +6,7 @@ enum ImagePath {
   suncloud,
   rain,
   splash,
-  homesun
+  homesun, airquality
 }
 
 extension ImagePathExtension on ImagePath {

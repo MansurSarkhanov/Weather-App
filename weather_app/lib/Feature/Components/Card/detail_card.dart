@@ -105,6 +105,13 @@ class DetailCard extends StatelessWidget {
                     ),
                   )
                 ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Tonight - Clear. Winds from SW to SSW at 10 to 11 mph (16.1 to 17.7 kph). The overnight low will be 69° F (20.0 ° C)',
+                style: TextStyle(color: Colors.grey.shade400, fontSize: 10),
               )
             ],
           ),

@@ -82,6 +82,7 @@ class CurrentModel {
   double? visKm;
   double? visMi;
   double? uv;
+  AirModel? airModel;
 
   CurrentModel(
       {this.lastUpdatedEpoch,
@@ -100,6 +101,8 @@ class CurrentModel {
       this.windMph,
       this.visKm,
       this.visMi,
+      this.airModel,
+
       this.uv});
 
   CurrentModel.fromJson(Map<String, dynamic> json) {
@@ -109,6 +112,8 @@ class CurrentModel {
     tempF = json['temp_f'];
     isDay = json['is_day'];
     condition = json['condition'] != null ? ConditionModel.fromJson(json['condition']) : null;
+    airModel = json['air_quality'] != null ? AirModel.fromJson(json['air_quality']) : null;
+
     cloud = json['cloud'];
     windMph = json['wind_mph'];
     windKph = json['wind_kph'];
@@ -120,7 +125,6 @@ class CurrentModel {
     uv = json['uv'];
     visKm = json['vis_km'];
     visMi = json['vis_miles'];
-
   }
 
   Map<String, dynamic> toJson() {
@@ -134,6 +138,43 @@ class CurrentModel {
       data['condition'] = condition!.toJson();
     }
     data['cloud'] = cloud;
+    return data;
+  }
+}
+
+class AirModel {
+  double? co;
+  double? no2;
+  double? o3;
+  double? so2;
+  double? pm25;
+  double? pm10;
+  int? usEpaIndex;
+  int? gbDefraIndex;
+
+  AirModel({this.co, this.no2, this.o3, this.so2, this.pm25, this.pm10, this.usEpaIndex, this.gbDefraIndex});
+
+  AirModel.fromJson(Map<String, dynamic> json) {
+    co = json['co'];
+    no2 = json['no2'];
+    o3 = json['o3'];
+    so2 = json['so2'];
+    pm25 = json['pm2_5'];
+    pm10 = json['pm10'];
+    usEpaIndex = json['us-epa-index'];
+    gbDefraIndex = json['gb-defra-index'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['co'] = co;
+    data['no2'] = no2;
+    data['o3'] = o3;
+    data['so2'] = so2;
+    data['pm2_5'] = pm25;
+    data['pm10'] = pm10;
+    data['us-epa-index'] = usEpaIndex;
+    data['gb-defra-index'] = gbDefraIndex;
     return data;
   }
 }
