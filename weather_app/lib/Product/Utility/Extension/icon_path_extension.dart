@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-enum IconPath { hum, sun, moon, sunrise }
+enum IconPath { hum, sun, moon, sunrise, check }
 
 extension IconPathExtension on IconPath {
   String toPath() {
