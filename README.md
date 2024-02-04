@@ -1,2 +1,2 @@
 # Weather-App
-<img src="assets/Icons/ic_launcher.png" width="128"/>
+<img src="weather_app/assets/Iconsic_launcher.png" width="128"/>
