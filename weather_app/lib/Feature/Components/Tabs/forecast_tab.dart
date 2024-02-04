@@ -97,7 +97,7 @@ class _ForecastTabState extends State<ForecastTab> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.only(left: 10.0, right: 10),
                     child: Image.asset(ImagePath.forecast.toPath()),
                   ),
                   Padding(
@@ -142,7 +142,7 @@ class _ForecastTabState extends State<ForecastTab> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.only(left: 10, right: 10.0),
                     child: Column(
                       children: widget.homeProviderWatch.currentModel?.forecast?.forecastday
                               ?.map((e) => Padding(
@@ -155,32 +155,32 @@ class _ForecastTabState extends State<ForecastTab> {
                                             Color(0xFF2F313A),
                                           ])),
                                       child: Padding(
-                                        padding: const EdgeInsets.only(left: 10.0),
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(top: 10.0, bottom: 10),
-                                          child: Row(
-                                            children: [
-                                              Container(
-                                                decoration: const BoxDecoration(
-                                                    shape: BoxShape.circle, color: Color(0xFF2F313A)),
-                                                child: Padding(
-                                                  padding: const EdgeInsets.all(16.0),
-                                                  child: Column(
-                                                    children: [
-                                                      const Text(
-                                                        'AVG',
-                                                        style: TextStyle(fontSize: 14, color: Colors.white),
-                                                      ),
-                                                      Text(
-                                                        '${e.day?.avgtempC?.toInt()}°',
-                                                        style: const TextStyle(fontSize: 16, color: Colors.white),
-                                                      ),
-                                                    ],
-                                                  ),
+                                        padding: const EdgeInsets.only(top: 8.0, bottom: 6, left: 6),
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              decoration: const BoxDecoration(
+                                                boxShadow: [BoxShadow(blurRadius: 10)],
+                                                shape: BoxShape.circle,
+                                                color: Color(0xFF2F313A),
+                                              ),
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(16.0),
+                                                child: Column(
+                                                  children: [
+                                                    const Text(
+                                                      'AVG',
+                                                      style: TextStyle(fontSize: 12, color: Colors.white),
+                                                    ),
+                                                    Text(
+                                                      '${e.day?.avgtempC?.toInt()}°',
+                                                      style: const TextStyle(fontSize: 14, color: Colors.white),
+                                                    ),
+                                                  ],
                                                 ),
-                                              )
-                                            ],
-                                          ),
+                                              ),
+                                            )
+                                          ],
                                         ),
                                       ),
                                     ),
