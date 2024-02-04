@@ -15,5 +15,21 @@ To summarize and brief in short, Weather App is the application of science and t
 ## UI/UX 
 ### App Icon
 <img src="weather_app/assets/Icons/ic_launcher.png" width="128"/>
-### Onboarding Page
+
+### Splash Page
+
+<img src="weather_app/assets/Design/splash.jpeg"  style="width:20%">
+
+### Onboarding Pages
+
+
+  <div class="row">
+    <img src="weather_app/assets/Design/onboarding1.jpeg"  style="width:20%">
+    <img src="weather_app/assets/Design/onboarding2.jpeg"  style="width:20%">
+    <img src="weather_app/assets/Design/onboarding3.jpeg"  style="width:20%">
+    <img src="weather_app/assets/Design/onboarding4.jpeg"  style="width:20%">
+    
+     
+  </div>
+
 
