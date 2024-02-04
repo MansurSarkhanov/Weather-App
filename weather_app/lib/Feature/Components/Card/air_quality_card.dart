@@ -77,6 +77,9 @@ class AirQualityCard extends StatelessWidget {
                       ))
                 ],
               ),
+              const SizedBox(
+                height: 10,
+              ),
               const Text(
                 '------------------------------------',
                 style: TextStyle(fontSize: 14, color: Color(0xFF979797)),
@@ -84,6 +87,28 @@ class AirQualityCard extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
+              Row(
+                children: [
+                  Text(
+                    "US EPA AQI ",
+                    style: TextStyle(color: Colors.grey.shade400, fontSize: 12),
+                  ),
+                  Text(
+                    '${homeProviderWatch.currentModel?.current?.airModel?.usEpaIndex}/500',
+                    style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.bold),
+                  ),
+                  const Spacer(),
+                  Text(
+                    "Dominant pollutant ",
+                    style: TextStyle(color: Colors.grey.shade400, fontSize: 12),
+                  ),
+                  Text(
+                    'PM ${homeProviderWatch.currentModel?.current?.airModel?.pm10?.toInt()}',
+                    style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.bold),
+                  )
+                ],
+              )
+
             ],
           ),
         ),
