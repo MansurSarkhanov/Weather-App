@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/Core/Provider/home_provider.dart';
+import 'package:weather_app/Product/Constants/app_colors.dart';
 import 'package:weather_app/Product/Utility/Extension/image_path_extension.dart';
 
 import '../custom_text.dart';
@@ -60,7 +61,7 @@ class _ForecastTabState extends State<ForecastTab> {
                                   borderRadius: BorderRadius.all(Radius.circular(30))),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Image.network(
                                       'http:${widget.homeProviderWatch.currentModel?.forecast?.forecastday?[index].day?.conditionModel?.icon}'),
@@ -120,7 +121,7 @@ class _ForecastTabState extends State<ForecastTab> {
                                 ),
                                 const Text(
                                   'Plan for the next 5 hours',
-                                  style: TextStyle(color: Colors.white, fontSize: 10),
+                                  style: TextStyle(color: Colors.white, fontSize: 12),
                                 )
                               ],
                             ),
@@ -151,12 +152,13 @@ class _ForecastTabState extends State<ForecastTab> {
                                       decoration: const BoxDecoration(
                                           borderRadius: BorderRadius.all(Radius.circular(14)),
                                           gradient: LinearGradient(colors: [
-                                            Color.fromARGB(255, 94, 96, 105),
+                                            AppColors.backColor,
                                             Color(0xFF2F313A),
                                           ])),
                                       child: Padding(
-                                        padding: const EdgeInsets.only(top: 8.0, bottom: 6, left: 6),
+                                        padding: const EdgeInsets.only(top: 6.0, bottom: 6, left: 8),
                                         child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
                                             Container(
                                               decoration: const BoxDecoration(
@@ -179,7 +181,32 @@ class _ForecastTabState extends State<ForecastTab> {
                                                   ],
                                                 ),
                                               ),
-                                            )
+                                            ),
+                                            Column(
+                                              children: [
+                                                Text(
+                                                  '${e.day?.conditionModel?.text}',
+                                                  style: const TextStyle(
+                                                      color: Color(0xFFFFBD00),
+                                                      fontSize: 16,
+                                                      fontWeight: FontWeight.bold),
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      '${e.astro?.sunrise}',
+                                                      style: TextStyle(color: Colors.grey.shade500),
+                                                    ),
+                                                    const Text("  |  "),
+                                                    Text(
+                                                      "${e.astro?.sunset}",
+                                                      style: TextStyle(color: Colors.grey.shade500),
+                                                    )
+                                                  ],
+                                                )
+                                              ],
+                                            ),
+                                            const Icon(Icons.navigate_next_outlined)
                                           ],
                                         ),
                                       ),
