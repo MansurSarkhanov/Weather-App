@@ -12,8 +12,8 @@ To summarize and brief in short, Weather App is the application of science and t
 ### Design 
 * Figma - (https://www.figma.com/community/file/1019501826717499483/weather-app-design?searchSessionId=ls7g7tae-chqwxsbl1cc) follow the link.
   
-
-
-
-
+## UI/UX 
+### App Icon
 <img src="weather_app/assets/Icons/ic_launcher.png" width="128"/>
+### Onboarding Page
+
