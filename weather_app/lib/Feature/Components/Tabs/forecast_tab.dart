@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/Core/Provider/home_provider.dart';
-import 'package:weather_app/Product/Constants/app_colors.dart';
 import 'package:weather_app/Product/Utility/Extension/image_path_extension.dart';
 
 import '../custom_text.dart';
@@ -63,7 +62,6 @@ class _ForecastTabState extends State<ForecastTab> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                               
                                   Image.network(
                                       'http:${widget.homeProviderWatch.currentModel?.forecast?.forecastday?[index].day?.conditionModel?.icon}'),
                                   Text(
@@ -78,7 +76,6 @@ class _ForecastTabState extends State<ForecastTab> {
                                 ],
                               ),
                             );
-                            
                           },
                         ),
                       ),
@@ -131,7 +128,7 @@ class _ForecastTabState extends State<ForecastTab> {
                           Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Container(
-                              decoration: const BoxDecoration(shape: BoxShape.circle, color: AppColors.backColor),
+                              decoration: const BoxDecoration(shape: BoxShape.circle, color: Color(0xFF2F313A)),
                               height: 50,
                               width: 50,
                               child: const Icon(
@@ -139,9 +136,57 @@ class _ForecastTabState extends State<ForecastTab> {
                                 color: Colors.white,
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Column(
+                      children: widget.homeProviderWatch.currentModel?.forecast?.forecastday
+                              ?.map((e) => Padding(
+                                    padding: const EdgeInsets.only(bottom: 4.0),
+                                    child: Container(
+                                      decoration: const BoxDecoration(
+                                          borderRadius: BorderRadius.all(Radius.circular(14)),
+                                          gradient: LinearGradient(colors: [
+                                            Color.fromARGB(255, 94, 96, 105),
+                                            Color(0xFF2F313A),
+                                          ])),
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(left: 10.0),
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(top: 10.0, bottom: 10),
+                                          child: Row(
+                                            children: [
+                                              Container(
+                                                decoration: const BoxDecoration(
+                                                    shape: BoxShape.circle, color: Color(0xFF2F313A)),
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(16.0),
+                                                  child: Column(
+                                                    children: [
+                                                      const Text(
+                                                        'AVG',
+                                                        style: TextStyle(fontSize: 14, color: Colors.white),
+                                                      ),
+                                                      Text(
+                                                        '${e.day?.avgtempC?.toInt()}°',
+                                                        style: const TextStyle(fontSize: 16, color: Colors.white),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ))
+                              .toList() ??
+                          [],
                     ),
                   )
                 ],
@@ -150,4 +195,5 @@ class _ForecastTabState extends State<ForecastTab> {
           );
   }
 }
+
 List items = ["Sun", "Mon", "Tue"];
