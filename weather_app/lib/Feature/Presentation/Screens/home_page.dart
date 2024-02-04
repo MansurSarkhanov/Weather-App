@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/Core/Provider/home_provider.dart';
+import 'package:weather_app/Feature/Components/Tabs/forecast_tab.dart';
 import 'package:weather_app/Product/Constants/app_colors.dart';
 
 import '../../../Product/Constants/app_strings.dart';
@@ -76,7 +77,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           controller: tabController,
           children: [
             TodayTab(homeProviderWatch: homeProviderWatch),
-            Container(),
+
+ForecastTab(homeProviderWatch: homeProviderWatch),
             Container(),
             Container(),
           ],

@@ -72,7 +72,7 @@ class AirQualityCard extends StatelessWidget {
                   Expanded(
                       flex: 3,
                       child: Text(
-                        'You have good air quality - enjoy your outdoor activities.',
+                        AppStrings.airQualityDescriptoin,
                         style: TextStyle(color: Colors.grey.shade400, fontSize: 12),
                       ))
                 ],
@@ -90,7 +90,7 @@ class AirQualityCard extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    "US EPA AQI ",
+                    AppStrings.us,
                     style: TextStyle(color: Colors.grey.shade400, fontSize: 12),
                   ),
                   Text(

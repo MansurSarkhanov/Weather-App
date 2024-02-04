@@ -22,11 +22,8 @@ final class AppStrings {
   static const String airQuality = "Air Quality";
   static const String sunMoon = "Sun & Moon";
 
-
   static const String high = "High";
   static const String low = "Low";
-
-
-
-
+  static const String airQualityDescriptoin = 'You have good air quality - enjoy your outdoor activities.';
+  static const String us = "US EPA AQI ";
 }
