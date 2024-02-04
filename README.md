@@ -8,6 +8,7 @@ To summarize and brief in short, Weather App is the application of science and t
 * Network - Dio
 * Local Storage - Shared Preferences
 * Animation - Lottie
+* Date - initl
 
 ### Design 
 * Figma - (https://www.figma.com/community/file/1019501826717499483/weather-app-design?searchSessionId=ls7g7tae-chqwxsbl1cc) follow the link.
