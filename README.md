@@ -19,23 +19,34 @@ To summarize and brief in short, Weather App is the application of science and t
 
 ### Splash Page
 
-<img src="weather_app/assets/Design/splash.jpeg"  style="width:20%">
+<img src="weather_app/assets/Design/splash.jpeg"  style="width:15%">
 
 ### Onboarding Pages
 
 
   <div class="row">
-    <img src="weather_app/assets/Design/onboarding1.jpeg"  style="width:20%">
-    <img src="weather_app/assets/Design/onboarding2.jpeg"  style="width:20%">
-    <img src="weather_app/assets/Design/onboarding3.jpeg"  style="width:20%">
-    <img src="weather_app/assets/Design/onboarding4.jpeg"  style="width:20%">
+    <img src="weather_app/assets/Design/onboarding1.jpeg"  style="width:15%">
+    <img src="weather_app/assets/Design/onboarding2.jpeg"  style="width:15%">
+    <img src="weather_app/assets/Design/onboarding3.jpeg"  style="width:15%">
+    <img src="weather_app/assets/Design/onboarding4.jpeg"  style="width:15%">
   </div>
 
 ### Home Pages
 
 
   <div class="row">
-    <img src="weather_app/assets/Design/home1.jpg"  style="width:20%">
-    <img src="weather_app/assets/Design/home2.jpg"  style="width:20%">
+    <img src="weather_app/assets/Design/home1.jpg"  style="width:15%">
+    <img src="weather_app/assets/Design/home2.jpg"  style="width:15%">
+    <img src="weather_app/assets/Design/forecast1.jpg"  style="width:15%">
+    <img src="weather_app/assets/Design/forecast2.jpg"  style="width:15%">
+    <img src="weather_app/assets/Design/preciption.jpg"  style="width:15%">
+  </div>
+
+### Drawer 
+  <div class="row">
+    <img src="weather_app/assets/Design/sidebar.jpg"  style="width:15%">
+    <img src="weather_app/assets/Design/share.jpg"  style="width:15%">
+    
+
   </div>
 
