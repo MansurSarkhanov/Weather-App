@@ -12,10 +12,9 @@ class HomeProvider extends ChangeNotifier {
   bool isLoading = true;
 
   Future<String> getLocation() async {
-    bool serviceEnabled;
     LocationPermission permission;
     String latlon;
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    await Geolocator.isLocationServiceEnabled();
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();

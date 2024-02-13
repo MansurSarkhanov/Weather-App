@@ -17,6 +17,7 @@ class HourlyWeather extends StatelessWidget {
         height: 150,
         width: context.general.mediaQuery.size.width,
         child: ListView.builder(
+          padding: const EdgeInsets.only(left: 8, right: 8),
           itemCount: homeProviderWatch.currentModel?.forecast?.forecastday?.first.hour?.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {

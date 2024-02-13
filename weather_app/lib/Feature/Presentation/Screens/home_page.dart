@@ -6,8 +6,10 @@ import 'package:weather_app/Feature/Components/Tabs/forecast_tab.dart';
 import 'package:weather_app/Product/Constants/app_colors.dart';
 
 import '../../../Product/Constants/app_strings.dart';
+import '../../Components/Tabs/preciption_tab.dart';
 import '../../Components/Tabs/today_tab.dart';
 import '../../Components/custom_text.dart';
+import '../../Components/sidebar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -25,15 +27,16 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     context.read<HomeProvider>().getWeather();
   }
 
-  void changeName() {}
 
   @override
   Widget build(BuildContext context) {
     final homeProviderWatch = context.watch<HomeProvider>();
 
     return Scaffold(
+      drawer: const SideBar(),
         backgroundColor: AppColors.backColor,
         appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.white),
           centerTitle: true,
           bottom: TabBar(
             dividerHeight: 0.5,
@@ -58,12 +61,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   color: Colors.white,
                 ))
           ],
-          leading: IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.menu,
-                color: Colors.white,
-              )),
+        
           title: homeProviderWatch.isLoading
               ? const CupertinoActivityIndicator(
                   color: Colors.white,
@@ -79,9 +77,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             TodayTab(homeProviderWatch: homeProviderWatch),
 
 ForecastTab(homeProviderWatch: homeProviderWatch),
-            Container(),
+          PreciptionTab(homeProviderWatch: homeProviderWatch),
             Container(),
           ],
-        ));
+      ),
+    );
   }
 }

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-enum IconPath { hum, sun, moon, sunrise, check }
+enum IconPath { hum, sun, moon, sunrise, check, drop }
 
 extension IconPathExtension on IconPath {
   String toPath() {
     return "assets/Icons/ic_$name.png";
   }
 
-  Widget toImage() {
+  Widget toImage([double? width]) {
     return Image.asset(
       toPath(),
-      width: 20,
+      width: width ?? 20,
     );
   }
 }
