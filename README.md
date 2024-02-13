@@ -29,8 +29,13 @@ To summarize and brief in short, Weather App is the application of science and t
     <img src="weather_app/assets/Design/onboarding2.jpeg"  style="width:20%">
     <img src="weather_app/assets/Design/onboarding3.jpeg"  style="width:20%">
     <img src="weather_app/assets/Design/onboarding4.jpeg"  style="width:20%">
-    
-     
   </div>
 
+### Home Pages
+
+
+  <div class="row">
+    <img src="weather_app/assets/Design/home1.jpg"  style="width:20%">
+    <img src="weather_app/assets/Design/home2.jpg"  style="width:20%">
+  </div>
 
